@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'addTaskScreen.dart';
+import 'tasksList.dart';
+
 class TaskScreen extends StatelessWidget {
   //Widget BuildBottomSheet(BuildContext context) => Container();
 
@@ -10,10 +12,18 @@ class TaskScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context, builder: (context) => AddTask(),);
-        },
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => SingleChildScrollView(
+                    child:Container(
+                      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTask(),
+                    )
+                )
+            );
+          }
       ),
       body: SafeArea(
         child: Column(
@@ -61,28 +71,7 @@ class TaskScreen extends StatelessWidget {
                       topRight: Radius.circular(20),
                     ),
                   ),
-                  child: ListView(
-                    children: <Widget>[
-                      ListTile(
-                        title: Text('taske one'),
-                        trailing: Checkbox(
-                          value: false,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('taske one'),
-                        trailing: Checkbox(
-                          value: false,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text('taske one'),
-                        trailing: Checkbox(
-                          value: false,
-                        ),
-                      ),
-                    ],
-                  )),
+                  child: TaskList()),
             )
           ],
         ),
@@ -90,3 +79,5 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
+
+

@@ -4,39 +4,44 @@ class AddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top:25),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+      color:Color(0xff757575),
+      child: Container(
+        padding: EdgeInsets.all(25),
+        decoration: BoxDecoration(
+            color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
         ),
-      ),
-      child: Column(
-        children: <Widget>[
-          Text('Add Task',
-          style: TextStyle(
-            color: Colors.lightBlueAccent,
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-          ),
-          ),
-          TextField(
-            autofocus: true,
-            textAlign: TextAlign.center,
-          ),
-          FlatButton(
-            color: Colors.lightBlueAccent,
-            child: Text('Add',
-            style:
-              TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),),
-            onPressed: (){
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text('Add Task',
+            style: TextStyle(
+              color: Colors.lightBlueAccent,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+            ),
+            TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+            ),
+            FlatButton(
+              color: Colors.lightBlueAccent,
+              child: Text('Add',
+              style:
+                TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),),
+              onPressed: (){
 
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
