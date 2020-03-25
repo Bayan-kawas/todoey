@@ -6,7 +6,7 @@ class TaskModel{
   TaskModel({this.taskName,this.isDone=false});
 
 
-  void toggleDone(){
-    isDone = !isDone;
-  }
+//  void toggleDone(){
+//    isDone = !isDone;
+//  }
 }

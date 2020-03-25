@@ -21,21 +21,27 @@ class _TaskScreenState extends State<TaskScreen> {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(Icons.add),
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(Icons.add),
           onPressed: () {
             showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
                 builder: (context) => SingleChildScrollView(
-                    child:Container(
-                      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTask(),
-                    )
-                )
-            );
-          }
-      ),
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTask(
+                        addNewTaskCallback: (newTask) {
+                          setState(() {
+                            tasks.add(TaskModel(taskName: newTask));
+                          });
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),)
+              ,);
+          }),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,5 +96,3 @@ class _TaskScreenState extends State<TaskScreen> {
     );
   }
 }
-
-

@@ -4,13 +4,14 @@ import 'package:todoey/models/taskModel.dart';
 
 class TaskList extends StatefulWidget {
   final List tasks;
+
   TaskList(this.tasks);
+
   @override
   _TaskListState createState() => _TaskListState();
 }
 
 class _TaskListState extends State<TaskList> {
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -19,6 +20,11 @@ class _TaskListState extends State<TaskList> {
           return Task(
             isChecked: widget.tasks[index].isDone,
             textTitle: widget.tasks[index].taskName,
+            checkboxCallback:(newValue) {
+              setState(() {
+                widget.tasks[index].isDone = newValue;
+              });
+            },
           );
         });
   }
