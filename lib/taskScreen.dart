@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'addTaskScreen.dart';
 import 'tasksList.dart';
-import 'package:todoey/models/taskModel.dart';
+import 'package:todoey/models/taskData.dart';
 
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   //Widget BuildBottomSheet(BuildContext context) => Container();
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  List<TaskModel> tasks = [
-    TaskModel(taskName: "buy milk"),
-    TaskModel(taskName: "go to gym"),
-    TaskModel(taskName: "meeting employee"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +16,25 @@ class _TaskScreenState extends State<TaskScreen> {
           child: Icon(Icons.add),
           onPressed: () {
             showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                builder: (context) => SingleChildScrollView(
-                        child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTask(
-                        addNewTaskCallback: (newTask) {
-                          setState(() {
-                            tasks.add(TaskModel(taskName: newTask));
-                          });
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),)
-              ,);
-          }),
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTask(
+
+//                    addNewTaskCallback: (newTask) {
+////                      setState(() {
+////                        tasks.add(TaskModel(taskName: newTask));
+////                      });
+//                      Navigator.pop(context);
+//
+                 ),
+                ),
+              ),
+            );
+          },),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +64,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     ),
                   ),
                   Text(
-                    '12 Tasks',
+                    '${Provider.of<TaskData>(context).tasksCount} Tasks ',
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -88,7 +81,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       topRight: Radius.circular(20),
                     ),
                   ),
-                  child: TaskList(tasks)),
+                  child: TaskList()),
             )
           ],
         ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:todoey/models/taskData.dart';
+import 'package:provider/provider.dart';
 class AddTask extends StatelessWidget {
-
- final Function addNewTaskCallback;
-  AddTask({this.addNewTaskCallback});
   @override
   Widget build(BuildContext context) {
     String contentTask;
@@ -32,19 +30,24 @@ class AddTask extends StatelessWidget {
               autofocus: true,
               textAlign: TextAlign.center,
               onChanged: (newText){
-                contentTask=newText;
+                contentTask = newText;
               },
             ),
-            FlatButton(
-              color: Colors.lightBlueAccent,
-              child: Text('Add',
-              style:
+            Consumer<TaskData>(
+              builder: (context,dataTask,child){
+                return  FlatButton(
+                color: Colors.lightBlueAccent,
+                child: Text('Add',
+                style:
                 TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
                 ),),
-              onPressed: (){
-                addNewTaskCallback(contentTask);
+                onPressed: (){
+                dataTask.addTask(contentTask);
+                Navigator.pop(context);
+                },
+                );
               },
             ),
           ],
